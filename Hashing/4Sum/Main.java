@@ -20,7 +20,7 @@ class Main {
         int x = target - (nums[i] + nums[j]);
         if (map.containsKey(x)) {
           if (i != map.get(x)[0] && i != map.get(x)[1] && j != map.get(x)[0] && j != map.get(x)[1])
-            System.out.println(i + " " + j + " " + map.get(x)[0] + " " + map.get(x)[1]);
+            System.out.println(nums[i] + " " + nums[j] + " " +nums[map.get(x)[0]] + " " + nums[map.get(x)[1]]);
             return;
         }
       }
