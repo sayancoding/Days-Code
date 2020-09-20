@@ -1,7 +1,26 @@
 import java.util.*;
 
-class Main {
-  static int maxAreaHistogram(int[] arr){
+class Main{
+  static int maxAreaMatrix(int[][] matrix){
+    int max = 0;
+    int[] temp = new int[matrix[0].length];
+    int[] maxAreaHistogram = new int[matrix.length];
+
+    for(int i = 0; i<matrix.length;i++){
+      for(int j = 0; j<matrix[0].length;j++){
+        if(matrix[i][j] == 0){
+          temp[j] = 0;
+        }else{
+          temp[j] = temp[j]+matrix[i][j];
+        } 
+      }
+      maxAreaHistogram[i] = maxAreaHistogram(temp);  
+    }
+    max = Arrays.stream(maxAreaHistogram).max().getAsInt();
+    return max;
+  }
+
+  static int maxAreaHistogram(int[] arr) {
     int maxArea = -1;
     int[] NSL = new int[arr.length];
     int[] NSR = new int[arr.length];
@@ -9,17 +28,17 @@ class Main {
     int[] area = new int[arr.length];
     NSL = NSL(arr);
     NSR = NSR(arr);
-    for(int i = 0 ; i<arr.length;i++){
+    for (int i = 0; i < arr.length; i++) {
       width[i] = NSR[i] - NSL[i] - 1;
-      area[i] = width[i]*arr[i];
-      if(area[i] == 0){
+      area[i] = width[i] * arr[i];
+      if (area[i] == 0) {
         area[i] = 1;
       }
     }
     maxArea = Arrays.stream(area).max().getAsInt();
     return maxArea;
   }
-  
+
   public static int[] NSL(int[] arr) {
     ArrayList<Integer> list = new ArrayList<>();
     for (int el : arr) {
@@ -48,13 +67,13 @@ class Main {
         }
       }
     }
-    print(result);
+    // print(result);
     return result;
   }
-  
+
   public static int[] NSR(int[] arr) {
     ArrayList<Integer> list = new ArrayList<>();
-    for(int el : arr){
+    for (int el : arr) {
       list.add(el);
     }
     int[] result = new int[arr.length];
@@ -80,20 +99,23 @@ class Main {
         }
       }
     }
-    print(result);
+    // print(result);
     return result;
   }
 
-
-  static void print(int[] arr) {
-    for (int el : arr) {
-      System.out.print(el + " ");
+  static void print(int[] arr){
+    for(int el : arr){
+      System.out.print(el+" ");
     }
     System.out.println();
   }
   public static void main(String[] args) {
-  //  int[] arr = new int[] {6,2,5,4,5,1,6};
-   int[] arr = new int[] {1,2,2,1};
-    System.out.println(maxAreaHistogram(arr));
+    int[][] matrix = new int[][]{
+      {0,1,1,0},
+      {1,1,1,1},
+      {1,1,1,1},
+      {1,1,0,0}
+    };
+    System.out.println(maxAreaMatrix(matrix)); 
   }
 }
