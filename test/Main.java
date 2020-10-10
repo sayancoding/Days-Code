@@ -25,6 +25,6 @@ class Main{
     for(int el : arr){
       list.add(el);
     }
-    countDuplicate(list);
+    System.out.println(countDuplicate(list));
   }
 }
