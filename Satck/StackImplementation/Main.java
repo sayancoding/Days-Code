@@ -19,9 +19,10 @@ class Stack{
 
   public void push(int data){
     if(top < max){
-      arr[++top] = data;
+      top++;
+      arr[top] = data;
     }else{
-      System.out.println("Satck is on Overflow..");
+      System.out.println("Stack is on Overflow..");
     }
   }
   public void peek(){
